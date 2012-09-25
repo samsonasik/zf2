@@ -29,7 +29,7 @@ class Http extends AbstractAdapter
     /**
      * Constructor for Http File Transfers
      *
-     * @param array $options OPTIONAL Options to set
+     * @param  array                             $options OPTIONAL Options to set
      * @throws Exception\PhpEnvironmentException if file uploads are not allowed
      */
     public function __construct($options = array())
@@ -46,20 +46,21 @@ class Http extends AbstractAdapter
     /**
      * Sets a validator for the class, erasing all previous set
      *
-     * @param  array        $validators Validator to set
-     * @param  string|array $files      Files to limit this validator to
+     * @param  array           $validators Validator to set
+     * @param  string|array    $files      Files to limit this validator to
      * @return AbstractAdapter
      */
     public function setValidators(array $validators, $files = null)
     {
         $this->clearValidators();
+
         return $this->addValidators($validators, $files);
     }
 
     /**
      * Remove an individual validator
      *
-     * @param  string $name
+     * @param  string          $name
      * @return AbstractAdapter
      */
     public function removeValidator($name)
@@ -87,7 +88,7 @@ class Http extends AbstractAdapter
     /**
      * Send the file to the client (Download)
      *
-     * @param  string|array $options Options for the file(s) to send
+     * @param  string|array                     $options Options for the file(s) to send
      * @return void
      * @throws Exception\BadMethodCallException Not implemented
      */
@@ -100,7 +101,7 @@ class Http extends AbstractAdapter
      * Checks if the files are valid
      *
      * @param  string|array $files (Optional) Files to check
-     * @return boolean True if all checks are valid
+     * @return boolean      True if all checks are valid
      */
     public function isValid($files = null)
     {
@@ -126,6 +127,7 @@ class Http extends AbstractAdapter
                       ->setFiles($temp)
                       ->isValid($files, null);
             $this->messages += $validator->getMessages();
+
             return false;
         }
 
@@ -178,6 +180,7 @@ class Http extends AbstractAdapter
                     }
 
                     $this->files[$file]['received'] = false;
+
                     return false;
                 }
 
@@ -193,6 +196,7 @@ class Http extends AbstractAdapter
             if (!$content['filtered']) {
                 if (!$this->filter($file)) {
                     $this->files[$file]['filtered'] = false;
+
                     return false;
                 }
 
@@ -206,7 +210,7 @@ class Http extends AbstractAdapter
     /**
      * Checks if the file was already sent
      *
-     * @param  string|array $files Files to check
+     * @param  string|array                     $files Files to check
      * @return boolean
      * @throws Exception\BadMethodCallException Not implemented
      */
@@ -284,7 +288,7 @@ class Http extends AbstractAdapter
     /**
      * Returns the actual progress of file up-/downloads
      *
-     * @param  string|array $id The upload to get the progress for
+     * @param  string|array                      $id The upload to get the progress for
      * @return array|null
      * @throws Exception\PhpEnvironmentException whether APC nor UploadProgress extension installed
      * @throws Exception\RuntimeException

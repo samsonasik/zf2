@@ -28,9 +28,9 @@ class Transfer
     /**
      * Creates a file processing handler
      *
-     * @param  string  $adapter   Adapter to use
-     * @param  boolean $direction OPTIONAL False means Download, true means upload
-     * @param  array   $options   OPTIONAL Options to set for this adapter
+     * @param  string                             $adapter   Adapter to use
+     * @param  boolean                            $direction OPTIONAL False means Download, true means upload
+     * @param  array                              $options   OPTIONAL Options to set for this adapter
      * @throws Exception\InvalidArgumentException
      */
     public function __construct($adapter = 'Http', $direction = false, $options = array())
@@ -41,9 +41,9 @@ class Transfer
     /**
      * Sets a new adapter
      *
-     * @param  string  $adapter   Adapter to use
-     * @param  boolean $direction OPTIONAL False means Download, true means upload
-     * @param  array   $options   OPTIONAL Options to set for this adapter
+     * @param  string                             $adapter   Adapter to use
+     * @param  boolean                            $direction OPTIONAL False means Download, true means upload
+     * @param  array                              $options   OPTIONAL Options to set for this adapter
      * @return Transfer
      * @throws Exception\InvalidArgumentException
      */
@@ -83,14 +83,15 @@ class Transfer
         }
 
         $direction = (integer) $direction;
+
         return $this->adapter[$direction];
     }
 
     /**
      * Calls all methods from the adapter
      *
-     * @param  string $method  Method to call
-     * @param  array  $options Options for this method
+     * @param  string                           $method  Method to call
+     * @param  array                            $options Options for this method
      * @throws Exception\BadMethodCallException if unknown method
      * @return mixed
      */

@@ -31,7 +31,7 @@ class ClassFileLocator extends FilterIterator
      * Expects either a directory, or a DirectoryIterator (or its recursive variant)
      * instance.
      *
-     * @param  string|DirectoryIterator $dirOrIterator
+     * @param  string|DirectoryIterator           $dirOrIterator
      * @throws Exception\InvalidArgumentException
      */
     public function __construct($dirOrIterator = '.')

@@ -182,7 +182,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Has the file been filtered ?
      *
-     * @param array|string|null $files
+     * @param  array|string|null $files
      * @return bool
      */
     abstract public function isFiltered($files = null);
@@ -190,18 +190,18 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Adds one or more files
      *
-     * @param  string|array $file      File to add
-     * @param  string|array $validator Validators to use for this file, must be set before
-     * @param  string|array $filter    Filters to use for this file, must be set before
+     * @param  string|array    $file      File to add
+     * @param  string|array    $validator Validators to use for this file, must be set before
+     * @param  string|array    $filter    Filters to use for this file, must be set before
      * @return AbstractAdapter
-     * @throws Exception Not implemented
+     * @throws Exception       Not implemented
      */
     //abstract public function addFile($file, $validator = null, $filter = null);
 
     /**
      * Returns all set types
      *
-     * @return array List of set types
+     * @return array     List of set types
      * @throws Exception Not implemented
      */
     //abstract public function getType();
@@ -209,11 +209,11 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Adds one or more type of files
      *
-     * @param  string|array $type Type of files to add
-     * @param  string|array $validator Validators to use for this file, must be set before
-     * @param  string|array $filter    Filters to use for this file, must be set before
+     * @param  string|array    $type      Type of files to add
+     * @param  string|array    $validator Validators to use for this file, must be set before
+     * @param  string|array    $filter    Filters to use for this file, must be set before
      * @return AbstractAdapter
-     * @throws Exception Not implemented
+     * @throws Exception       Not implemented
      */
     //abstract public function addType($type, $validator = null, $filter = null);
 
@@ -233,6 +233,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     public function setFilterManager(FilterPluginManager $filterManager)
     {
         $this->filterManager = $filterManager;
+
         return $this;
     }
 
@@ -246,6 +247,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
         if (!$this->filterManager instanceof FilterPluginManager) {
             $this->setFilterManager(new FilterPluginManager());
         }
+
         return $this->filterManager;
     }
 
@@ -258,6 +260,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     public function setValidatorManager(ValidatorPluginManager $validatorManager)
     {
         $this->validatorManager = $validatorManager;
+
         return $this;
     }
 
@@ -271,6 +274,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
         if (!$this->validatorManager instanceof ValidatorPluginManager) {
             $this->setValidatorManager(new ValidatorPluginManager());
         }
+
         return $this->validatorManager;
     }
 
@@ -278,11 +282,11 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
      * Adds a new validator for this class
      *
      * @param  string|Validator\ValidatorInterface $validator           Type of validator to add
-     * @param  boolean                    $breakChainOnFailure If the validation chain should stop an failure
-     * @param  string|array               $options             Options to set for the validator
-     * @param  string|array               $files               Files to limit this validator to
+     * @param  boolean                             $breakChainOnFailure If the validation chain should stop an failure
+     * @param  string|array                        $options             Options to set for the validator
+     * @param  string|array                        $files               Files to limit this validator to
      * @return AbstractAdapter
-     * @throws Exception\InvalidArgumentException for invalid type
+     * @throws Exception\InvalidArgumentException  for invalid type
      */
     public function addValidator($validator, $breakChainOnFailure = false, $options = null, $files = null)
     {
@@ -329,8 +333,8 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Add Multiple validators at once
      *
-     * @param  array        $validators
-     * @param  string|array $files
+     * @param  array                              $validators
+     * @param  string|array                       $files
      * @return AbstractAdapter
      * @throws Exception\InvalidArgumentException for invalid type
      */
@@ -397,13 +401,14 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Sets a validator for the class, erasing all previous set
      *
-     * @param  array        $validators Validators to set
-     * @param  string|array $files      Files to limit this validator to
+     * @param  array           $validators Validators to set
+     * @param  string|array    $files      Files to limit this validator to
      * @return AbstractAdapter
      */
     public function setValidators(array $validators, $files = null)
     {
         $this->clearValidators();
+
         return $this->addValidators($validators, $files);
     }
 
@@ -421,7 +426,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Retrieve individual validator
      *
-     * @param  string $name
+     * @param  string                            $name
      * @return Validator\ValidatorInterface|null
      */
     public function getValidator($name)
@@ -429,6 +434,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
         if (false === ($identifier = $this->getValidatorIdentifier($name))) {
             return null;
         }
+
         return $this->validators[$identifier];
     }
 
@@ -436,7 +442,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
      * Returns all set validators
      *
      * @param  string|array $files (Optional) Returns the validator for this files
-     * @return null|array List of set validators
+     * @return null|array   List of set validators
      */
     public function getValidators($files = null)
     {
@@ -464,7 +470,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Remove an individual validator
      *
-     * @param  string $name
+     * @param  string          $name
      * @return AbstractAdapter
      */
     public function removeValidator($name)
@@ -510,8 +516,8 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Sets Options for adapters
      *
-     * @param array $options Options to set
-     * @param array $files   (Optional) Files to set the options for
+     * @param  array           $options Options to set
+     * @param  array           $files   (Optional) Files to set the options for
      * @return AbstractAdapter
      */
     public function setOptions($options = array(), $files = null)
@@ -571,7 +577,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
      * Checks if the files are valid
      *
      * @param  string|array $files (Optional) Files to check
-     * @return boolean True if all checks are valid
+     * @return boolean      True if all checks are valid
      */
     public function isValid($files = null)
     {
@@ -700,9 +706,9 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Adds a new filter for this class
      *
-     * @param  string|Filter\FilterInterface $filter Type of filter to add
-     * @param  string|array         $options   Options to set for the filter
-     * @param  string|array         $files     Files to limit this filter to
+     * @param  string|Filter\FilterInterface      $filter  Type of filter to add
+     * @param  string|array                       $options Options to set for the filter
+     * @param  string|array                       $files   Files to limit this filter to
      * @return AbstractAdapter
      * @throws Exception\InvalidArgumentException for invalid type
      */
@@ -729,8 +735,8 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Add Multiple filters at once
      *
-     * @param  array $filters
-     * @param  string|array $files
+     * @param  array           $filters
+     * @param  string|array    $files
      * @return AbstractAdapter
      */
     public function addFilters(array $filters, $files = null)
@@ -773,13 +779,14 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Sets a filter for the class, erasing all previous set
      *
-     * @param  array        $filters Filter to set
-     * @param  string|array $files   Files to limit this filter to
+     * @param  array                 $filters Filter to set
+     * @param  string|array          $files   Files to limit this filter to
      * @return Filter\AbstractFilter
      */
     public function setFilters(array $filters, $files = null)
     {
         $this->clearFilters();
+
         return $this->addFilters($filters, $files);
     }
 
@@ -797,7 +804,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Retrieve individual filter
      *
-     * @param  string $name
+     * @param  string                      $name
      * @return Filter\FilterInterface|null
      */
     public function getFilter($name)
@@ -812,8 +819,8 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Returns all set filters
      *
-     * @param  string|array $files (Optional) Returns the filter for this files
-     * @return array List of set filters
+     * @param  string|array               $files (Optional) Returns the filter for this files
+     * @return array                      List of set filters
      * @throws Exception\RuntimeException When file not found
      */
     public function getFilters($files = null)
@@ -842,7 +849,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Remove an individual filter
      *
-     * @param  string $name
+     * @param  string          $name
      * @return AbstractAdapter
      */
     public function removeFilter($name)
@@ -864,6 +871,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
 
             unset($this->files[$file]['filters'][$index]);
         }
+
         return $this;
     }
 
@@ -885,8 +893,8 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Retrieves the filename of transferred files.
      *
-     * @param  string  $file (Optional) Element to return the filename for
-     * @param  boolean $path (Optional) Should the path also be returned ?
+     * @param  string       $file (Optional) Element to return the filename for
+     * @param  boolean      $path (Optional) Should the path also be returned ?
      * @return string|array
      */
     public function getFileName($file = null, $path = true)
@@ -928,8 +936,8 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
      * Sets a new destination for the given files
      *
      * @deprecated Will be changed to be a filter!!!
-     * @param  string       $destination New destination directory
-     * @param  string|array $files       Files to set the new destination for
+     * @param  string                             $destination New destination directory
+     * @param  string|array                       $files       Files to set the new destination for
      * @return AbstractAdapter
      * @throws Exception\InvalidArgumentException when the given destination is not a directory or does not exist
      */
@@ -966,7 +974,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Retrieve destination directory value
      *
-     * @param  null|string|array $files
+     * @param  null|string|array                  $files
      * @throws Exception\InvalidArgumentException
      * @return null|string|array
      */
@@ -1007,9 +1015,9 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Sets translator to use in helper
      *
-     * @param  Translator $translator  [optional] translator.
+     * @param Translator $translator [optional] translator.
      *                                 Default is null, which sets no translator.
-     * @param  string     $textDomain  [optional] text domain
+     * @param string $textDomain [optional] text domain
      *                                 Default is null, which skips setTranslatorTextDomain
      * @return AbstractAdapter
      */
@@ -1019,6 +1027,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
         if (null !== $textDomain) {
             $this->setTranslatorTextDomain($textDomain);
         }
+
         return $this;
     }
 
@@ -1049,12 +1058,13 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Indicate whether or not translation should be enabled
      *
-     * @param  bool $flag
+     * @param  bool            $flag
      * @return AbstractAdapter
      */
     public function setTranslatorEnabled($flag = true)
     {
         $this->translatorEnabled = (bool) $flag;
+
         return $this;
     }
 
@@ -1071,12 +1081,13 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Set translation text domain
      *
-     * @param  string $textDomain
+     * @param  string          $textDomain
      * @return AbstractAdapter
      */
     public function setTranslatorTextDomain($textDomain = 'default')
     {
         $this->translatorTextDomain = $textDomain;
+
         return $this;
     }
 
@@ -1093,9 +1104,9 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Returns the hash for a given file
      *
-     * @param  string       $hash  Hash algorithm to use
-     * @param  string|array $files Files to return the hash for
-     * @return string|array Hashstring
+     * @param  string                             $hash  Hash algorithm to use
+     * @param  string|array                       $files Files to return the hash for
+     * @return string|array                       Hashstring
      * @throws Exception\InvalidArgumentException On unknown hash algorithm
      */
     public function getHash($hash = 'crc32', $files = null)
@@ -1126,8 +1137,8 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Returns the real filesize of the file
      *
-     * @param  string|array $files Files to get the filesize from
-     * @return string|array Filesize
+     * @param  string|array                       $files Files to get the filesize from
+     * @return string|array                       Filesize
      * @throws Exception\InvalidArgumentException When the file does not exist
      */
     public function getFileSize($files = null)
@@ -1158,7 +1169,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Internal method to detect the size of a file
      *
-     * @param  array $value File infos
+     * @param  array  $value File infos
      * @return string Filesize of given file
      */
     protected function detectFileSize($value)
@@ -1185,8 +1196,8 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
      * Returns the real mimetype of the file
      * Uses fileinfo, when not available mime_magic and as last fallback a manual given mimetype
      *
-     * @param string|array $files Files to get the mimetype from
-     * @return string|array MimeType
+     * @param  string|array                       $files Files to get the mimetype from
+     * @return string|array                       MimeType
      * @throws Exception\InvalidArgumentException When the file does not exist
      */
     public function getMimeType($files = null)
@@ -1213,7 +1224,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Internal method to detect the mime type of a file
      *
-     * @param  array $value File infos
+     * @param  array  $value File infos
      * @return string Mimetype of given file
      */
     protected function detectMimeType($value)
@@ -1279,7 +1290,7 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
      * Internal function to filter all given files
      *
      * @param  string|array $files (Optional) Files to check
-     * @return boolean False on error
+     * @return boolean      False on error
      */
     protected function filter($files = null)
     {
@@ -1357,13 +1368,14 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
 
             $this->tmpDir = rtrim($this->tmpDir, "/\\");
         }
+
         return $this->tmpDir;
     }
 
     /**
      * Tries to detect if we can read and write to the given path
      *
-     * @param string $path
+     * @param  string $path
      * @return bool
      */
     protected function isPathWriteable($path)
@@ -1393,10 +1405,10 @@ abstract class AbstractAdapter implements TranslatorAwareInterface
     /**
      * Returns found files based on internal file array and given files
      *
-     * @param  string|array $files       (Optional) Files to return
-     * @param  boolean      $names       (Optional) Returns only names on true, else complete info
-     * @param  boolean      $noexception (Optional) Allows throwing an exception, otherwise returns an empty array
-     * @return array Found files
+     * @param  string|array               $files       (Optional) Files to return
+     * @param  boolean                    $names       (Optional) Returns only names on true, else complete info
+     * @param  boolean                    $noexception (Optional) Allows throwing an exception, otherwise returns an empty array
+     * @return array                      Found files
      * @throws Exception\RuntimeException On false filename
      */
     protected function getFiles($files, $names = false, $noexception = false)
