@@ -130,10 +130,11 @@ class Date extends AbstractValidator
 
             if ($errors['warning_count'] > 0) {
                 $this->error(self::INVALID_DATE);
-                return false;
             }
             if ($date === false) {
                 $this->error(self::INVALID_DATE);
+            }
+            if ($this->error(self::INVALID_DATE)) {
                 return false;
             }
         } else {
