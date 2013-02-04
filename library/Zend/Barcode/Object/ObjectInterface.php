@@ -9,6 +9,8 @@
 
 namespace Zend\Barcode\Object;
 
+use Traversable;
+
 /**
  * Interface for generate Barcode
  */
@@ -16,7 +18,7 @@ interface ObjectInterface
 {
     /**
      * Constructor
-     * @param array|\Traversable $options
+     * @param array|Traversable $options
      */
     public function __construct($options = null);
 
