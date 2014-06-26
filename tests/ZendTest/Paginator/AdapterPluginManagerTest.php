@@ -56,18 +56,4 @@ class AdapterPluginManagerTest extends \PHPUnit_Framework_TestCase
         $plugin = $this->adapaterPluginManager->get('null', 101);
         $this->assertInstanceOf('Zend\Paginator\Adapter\Null', $plugin);
     }
-
-    public function testCanRetrievePluginManagerWithServiceManager()
-    {
-        $sm = $this->serviceManager = new ServiceManager(
-            new ServiceManagerConfig(array(
-                'factories' => array(
-                    'PaginatorPluginManager'  => 'Zend\Mvc\Service\PaginatorPluginManagerFactory',
-                ),
-            ))
-        );
-        $sm->setService('Config', array());
-        $adapterPluginManager = $sm->get('PaginatorPluginManager');
-        $this->assertInstanceOf('Zend\Paginator\AdapterPluginManager', $adapterPluginManager);
-    }
 }
